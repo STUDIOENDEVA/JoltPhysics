@@ -114,7 +114,14 @@ using SharedMutexBase = shared_mutex;
 
 #endif // JPH_PLATFORM_BLUE
 
-#if defined(JPH_ENABLE_ASSERTS) || defined(JPH_PROFILE_ENABLED) || defined(JPH_EXTERNAL_PROFILE)
+#ifdef JPH_CUSTOM_MUTEX
+
+// Custom mutex implementation provided by the integrator.
+// JPH_CUSTOM_MUTEX must expand to a quoted header path (e.g. "my_mutex.h")
+// that defines Mutex and SharedMutex in the JPH namespace.
+#include JPH_CUSTOM_MUTEX
+
+#elif defined(JPH_ENABLE_ASSERTS) || defined(JPH_PROFILE_ENABLED) || defined(JPH_EXTERNAL_PROFILE)
 
 /// Very simple wrapper around MutexBase which tracks lock contention in the profiler
 /// and asserts that locks/unlocks take place on the same thread
