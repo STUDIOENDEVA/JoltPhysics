@@ -36,17 +36,21 @@ public:
 	/// Call before taking the lock
 	static inline void			sCheckLock(PhysicsLockContext inContext, EPhysicsLockTypes inType)
 	{
+#ifndef JPH_CUSTOM_MUTEX
 		uint32 &mutexes = sGetLockedMutexes(inContext);
 		JPH_ASSERT(uint32(inType) > mutexes, "A lock of same or higher priority was already taken, this can create a deadlock!");
 		mutexes = mutexes | uint32(inType);
+#endif
 	}
 
 	/// Call after releasing the lock
 	static inline void			sCheckUnlock(PhysicsLockContext inContext, EPhysicsLockTypes inType)
 	{
+#ifndef JPH_CUSTOM_MUTEX
 		uint32 &mutexes = sGetLockedMutexes(inContext);
 		JPH_ASSERT((mutexes & uint32(inType)) != 0, "Mutex was not locked!");
 		mutexes = mutexes & ~uint32(inType);
+#endif
 	}
 #endif // !JPH_ENABLE_ASSERTS
 
