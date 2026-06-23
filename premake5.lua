@@ -26,7 +26,7 @@ project "JoltPhysics"
 		"Jolt/Shaders/**"
 	}
 
-	defines { "JPH_OBJECT_STREAM", 'JPH_CUSTOM_MUTEX="' .. project_root .. '/src/jolt/jph_custom_mutex.h"' }
+	defines { "JPH_OBJECT_STREAM", 'JPH_CUSTOM_MUTEX="' .. project_root .. '/src/jolt/jolt/jph_custom_mutex.h"' }
 
 	filter "system:windows"
 		systemversion "latest"
@@ -70,17 +70,7 @@ project "JoltPhysics"
 		symbols "on"
 	filter ""
 
-	filter "configurations:DebugEditor"
-		runtime "Debug"
-		symbols "on"
-	filter ""
-
 	filter "configurations:Release"
-		runtime "Release"
-		optimize "on"
-	filter ""
-
-	filter "configurations:ReleaseEditor"
 		runtime "Release"
 		optimize "on"
 	filter ""
