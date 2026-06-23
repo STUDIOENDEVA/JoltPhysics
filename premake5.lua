@@ -26,7 +26,7 @@ project "JoltPhysics"
 		"Jolt/Shaders/**"
 	}
 
-	defines { "JPH_OBJECT_STREAM", 'JPH_CUSTOM_MUTEX="' .. project_root .. '/src/jolt/jolt/jph_custom_mutex.h"' }
+	defines { "JPH_OBJECT_STREAM", 'JPH_CUSTOM_MUTEX="' .. engine_root .. '/src/jolt/jolt/jph_custom_mutex.h"' }
 
 	filter "system:windows"
 		systemversion "latest"
